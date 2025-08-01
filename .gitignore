@@ -1,0 +1,5 @@
+# 가상환경 (Flask backend 용)
+backend/spotenv/
+
+# 환경변수 파일 (모든 위치에서)
+**/.env
