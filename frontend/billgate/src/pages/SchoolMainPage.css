@@ -1,0 +1,200 @@
+/* src/pages/SchoolMainPage.css - Updated Version (전체 크기 조절) */
+
+/* ----- 기본 레이아웃 및 폰트 스타일 ----- */
+.school-main-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem; /* 상단 여백 줄임 */
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* ----- 헤더 및 학교 정보 섹션 ----- */
+.school-info {
+  margin-bottom: 1.5rem; /* 아래 여백 줄임 */
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.school-info .school-logo {
+  width: 60px; /* 로고 크기 더 축소 */
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 0.3rem;
+}
+
+.school-info h1 {
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.school-info p {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+/* ----- 기능 카드 섹션 (전체 컨테이너) ----- */
+.features-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.5rem; /* 간격 줄임 */
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  flex: 1;
+  max-width: 450px;
+  background-color: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 1.5rem; /* 내부 여백 줄임 */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ----- '빈 강의실 찾기' 카드 ----- */
+.find-classroom {
+  background: linear-gradient(135deg, #4a90e2, #50e3c2);
+  color: white;
+}
+
+.find-classroom h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+  margin-bottom: 1.5rem;
+}
+
+.personnel-input {
+  width: 150px;
+  padding: 0.7rem 1rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-align: center;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.search-button {
+  background-color: white;
+  color: #4a90e2;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #e6e6e6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ----- '회의실 예약' 카드 ----- */
+.reserve-room h2 {
+  color: #2c3e50;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.realtime-chart-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-height: 250px; /* 차트 목록의 최대 높이 설정 */
+  overflow-y: auto; /* 세로 스크롤 활성화 */
+  padding-right: 0.5rem; /* 스크롤바 공간 확보 */
+}
+
+.chart-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem 1rem;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.chart-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.rank-number {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2c3e50;
+  width: 20px;
+  text-align: center;
+}
+
+.item-details {
+  flex-grow: 1;
+}
+
+.item-name {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 0.3rem;
+}
+
+.chart-bar-wrapper {
+  background-color: #e9ecef;
+  border-radius: 5px;
+  height: 5px;
+}
+
+.chart-bar {
+  background-color: #27ae60;
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.5s ease;
+}
+
+.hardcoded-label {
+  margin-top: 1.5rem;
+  font-size: 0.7rem;
+  color: #95a5a6;
+}
+
+/* ----- 반응형 디자인 추가 (필요에 따라) ----- */
+@media (max-width: 992px) {
+  .features-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-card {
+    max-width: 100%;
+    width: 100%;
+  }
+}

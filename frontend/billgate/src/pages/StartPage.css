@@ -1,0 +1,151 @@
+/* src/pages/StartPage.css */
+
+.startpage-main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.startpage-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+}
+
+.startpage-text-section {
+  flex: 1;
+  text-align: center;
+}
+
+.startpage-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1.2;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.startpage-title .animated-text {
+  color: #007bff;
+}
+
+.startpage-service-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #007bff;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInMove 1s ease-out forwards 0.5s; /* 0.5초 지연 후 시작 */
+}
+
+.startpage-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #666;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.startpage-cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center; /* Flexbox 자식 요소들을 중앙 정렬 */
+}
+
+.cta-button {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.primary-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.primary-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.secondary-button {
+  background-color: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+
+.secondary-button:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.startpage-image-section {
+  flex: 1;
+  text-align: right;
+}
+
+.main-illustration {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 애니메이션 효과 */
+
+/* "장소 빌게이츠" 텍스트의 애니메이션 효과 */
+.startpage-service-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #007bff;
+  display: inline-block; /* span 요소들이 한 줄에 오도록 설정 */
+  margin-top: 0; /* 기존 마진 제거 */
+}
+
+/* 물결 효과를 위한 키프레임 */
+@keyframes waveAnimation {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* 10px 위로 움직임 */
+  }
+}
+
+/* 각 글자에 대한 스타일 */
+.wave-char {
+  display: inline-block; /* 각 글자가 독립적으로 움직이도록 설정 */
+  animation: waveAnimation 1.5s ease-in-out forwards; /* 1.5초 동안 무한 반복 */
+  
+}
+
+@keyframes fadeInMove {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .startpage-content-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+  .startpage-cta-buttons {
+    justify-content: center;
+  }
+  .startpage-text-section {
+    order: 2;
+  }
+  .startpage-image-section {
+    order: 1;
+  }
+}
