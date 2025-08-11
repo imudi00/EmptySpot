@@ -1,0 +1,58 @@
+/* src/pages/SchoolSelectPage.css */
+
+.school-select-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.school-select-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.school-select-container p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.school-list {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.school-item {
+  width: 200px;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.school-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+.school-item img {
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.school-item p {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+}
+.school-item-link {
+  text-decoration: none; /* 링크의 밑줄 제거 */
+  color: inherit; /* 부모 요소의 글자색 상속 */
+}
