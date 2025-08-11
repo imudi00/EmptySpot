@@ -78,7 +78,7 @@
            <div className="graph-container">
              {congestionData.map(([day, level]) => (
                <div key={day} className="graph-bar">
-                 <div className="day">{day}</div>
+                 <div className="day">{day.substring(0, 3)}</div>
                  <div className="bar" style={{ height: `${level}%` }} data-level={level}></div>
                </div>
              ))}

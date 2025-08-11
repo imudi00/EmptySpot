@@ -60,16 +60,16 @@
    font-size: 1.5rem;
    color: #333;
    margin-bottom: 1rem;
-   text-align: left;
+   text-align: center;
  }
 
  .graph-container {
    display: flex;
+    justify-content: space-around;/*아래부터*/
    align-items: flex-end;
    gap: 0.5rem;
    width: 100%;
    height: 150px;
-   border-left: 1px solid #ccc;
    border-bottom: 1px solid #ccc;
    padding-bottom: 0.5rem;
  }
