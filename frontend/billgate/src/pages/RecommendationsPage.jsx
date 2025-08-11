@@ -1,7 +1,7 @@
 // src/pages/RecommendationsPage.jsx
 
-import React from 'react';
-import { useParams, useLocation,Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import Header from '../components/common/Header';
 import './RecommendationsPage.css';
 
@@ -9,6 +9,8 @@ function RecommendationsPage() {
   const { schoolName } = useParams();
   const location = useLocation();
   const personnel = location.state?.personnel || '정보 없음';
+
+  const [recommendations, setRecommendations] = useState([]);
 
   const getSchoolData = (name) => {
     switch (name) {
@@ -23,15 +25,25 @@ function RecommendationsPage() {
 
   const schoolData = getSchoolData(schoolName);
 
-  // 하드코딩된 추천 장소 데이터
-  // 이 데이터는 실제 백엔드 연동 시 API 응답으로 대체됩니다.
-  const recommendations = [
-    { id: 'lobby-1', name: '대양AI센터 1층 로비', description: '많은 인원이 모일 수 있는 넓은 공간', score: 95 },
-     { id: 'lounge-15', name: '광개토관 15층 라운지', description: '창밖 뷰가 좋은, 쾌적한 공간', score: 85 },
-     { id: 'seminar-2', name: '학생회관 2층 세미나실', description: '소음이 적고 집중하기 좋은 공간', score: 70 },
-     { id: 'rest-b1', name: '군자관 지하 휴게실', description: '편하게 앉아 쉴 수 있는 공간', score: 60 },
-   ];
-  
+  useEffect(() => {
+    // 임의 위치값 (테스트용)
+    const lat = 37.550;  
+    const lng = 127.073; 
+
+    fetch(`/api/recommendation/location?lat=${lat}&lng=${lng}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("API 응답:", data);
+
+        // 백엔드에서 sorted_locations로 온다고 가정
+        if (data.sorted_locations) {
+          setRecommendations(data.sorted_locations);
+        }
+      })
+      .catch((err) => {
+        console.error("API 호출 오류:", err);
+      });
+  }, [schoolName]);
 
   return (
     <div>
@@ -47,21 +59,31 @@ function RecommendationsPage() {
 
         <div className="recommendations-list">
           <h2>추천 장소</h2>
-          <p className="hardcoded-label">※ 이 장소들은 하드코딩된 데이터입니다.</p>
-          {recommendations.map((item, index) => (
-            <div key={index} className="recommendation-item">
-              <span className="rank-number">{index + 1}</span>
-              <div className="item-details">
-                <Link to={`/school/${schoolName}/places/${item.id}`} className="recommendation-link">
-                <div className="item-name">{item.name}</div>
-                <div className="item-description">{item.description}</div>
-                </Link>
-                <div className="chart-bar-wrapper">
-                  <div className="chart-bar" style={{ width: `${item.score}%` }}></div>
+          <p className="hardcoded-label">※ 현재는 DB에서 가져온 원시 데이터입니다.</p>
+
+          {recommendations.length > 0 ? (
+            recommendations.map((item, index) => (
+              <div key={index} className="recommendation-item">
+                <span className="rank-number">{index + 1}</span>
+                <div className="item-details">
+                  <Link to={`/school/${schoolName}/places/${item.id}`} className="recommendation-link">
+                    <div className="item-name">{item.name}</div>
+                    <div className="item-description">
+                      {item.building || '설명 없음'}
+                    </div>
+                  </Link>
+                  <div className="chart-bar-wrapper">
+                    <div
+                      className="chart-bar"
+                      style={{ width: `${(100 - item.distance_km).toFixed(1)}%` }}
+                    ></div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>추천 데이터를 불러오는 중...</p>
+          )}
         </div>
       </main>
     </div>
