@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import StartPage from './pages/StartPage';
 import SchoolSelectPage from './pages/SchoolSelectPage';
 import RecommendationsPage from './pages/RecommendationsPage';
+ import PlaceDetailPage from './pages/PlaceDetailPage';
 import './App.css';
 
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/select-school" element={<SchoolSelectPage />} />
           <Route path="/school/:schoolName" element={<SchoolMainPage />} />
           <Route path="/school/:schoolName/recommendations" element={<RecommendationsPage />} />
+          <Route path="/school/:schoolName/places/:placeId" element={<PlaceDetailPage />} /> 
         </Routes>
       </div>
     </BrowserRouter>

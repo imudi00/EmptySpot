@@ -1,7 +1,7 @@
 // src/pages/RecommendationsPage.jsx
 
 import React from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation,Link } from 'react-router-dom';
 import Header from '../components/common/Header';
 import './RecommendationsPage.css';
 
@@ -26,11 +26,12 @@ function RecommendationsPage() {
   // 하드코딩된 추천 장소 데이터
   // 이 데이터는 실제 백엔드 연동 시 API 응답으로 대체됩니다.
   const recommendations = [
-    { name: '대양AI센터 1층 로비', description: '많은 인원이 모일 수 있는 넓은 공간', score: 95 },
-    { name: '광개토관 15층 라운지', description: '창밖 뷰가 좋은, 쾌적한 공간', score: 85 },
-    { name: '학생회관 2층 세미나실', description: '소음이 적고 집중하기 좋은 공간', score: 70 },
-    { name: '군자관 지하 휴게실', description: '편하게 앉아 쉴 수 있는 공간', score: 60 },
-  ];
+    { id: 'lobby-1', name: '대양AI센터 1층 로비', description: '많은 인원이 모일 수 있는 넓은 공간', score: 95 },
+     { id: 'lounge-15', name: '광개토관 15층 라운지', description: '창밖 뷰가 좋은, 쾌적한 공간', score: 85 },
+     { id: 'seminar-2', name: '학생회관 2층 세미나실', description: '소음이 적고 집중하기 좋은 공간', score: 70 },
+     { id: 'rest-b1', name: '군자관 지하 휴게실', description: '편하게 앉아 쉴 수 있는 공간', score: 60 },
+   ];
+  
 
   return (
     <div>
@@ -51,8 +52,10 @@ function RecommendationsPage() {
             <div key={index} className="recommendation-item">
               <span className="rank-number">{index + 1}</span>
               <div className="item-details">
+                <Link to={`/school/${schoolName}/places/${item.id}`} className="recommendation-link">
                 <div className="item-name">{item.name}</div>
                 <div className="item-description">{item.description}</div>
+                </Link>
                 <div className="chart-bar-wrapper">
                   <div className="chart-bar" style={{ width: `${item.score}%` }}></div>
                 </div>

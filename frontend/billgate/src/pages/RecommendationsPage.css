@@ -63,6 +63,17 @@
   border-bottom: none;
 }
 
+
+.recommendation-link {
+  text-decoration: none; /* 링크 밑줄 제거 */
+  color: inherit; /* 부모 요소의 색상 상속 */
+}
+
+.recommendation-link:hover .item-name {
+  text-decoration: underline; /* 호버 시 이름에 밑줄 표시 (선택 사항) */
+}
+
+
 .rank-number {
   font-size: 1.5rem;
   font-weight: bold;
