@@ -7,7 +7,6 @@ from math import radians, sin, cos, asin, sqrt
 import os
 import json
 
-
 # env 가져오기
 load_dotenv()
 
@@ -58,8 +57,6 @@ def recommend_location():
             content_type="application/json; charset=utf-8"
         ), 500
         
-# 혼잡도 계산 함수 - 혼잡도 기반 추천api
-
 # 장소 상세 정보 불러오기 - 버튼의 장소 id와 연결.
 @app.route("/api/places/<int:place_id>", methods=["GET"])
 def get_place_details(place_id: int):
@@ -114,7 +111,7 @@ def get_place_details(place_id: int):
         )
 
 #혼잡도 기반 추천 API - 혼잡도 낮은 순으로 장소 추천
-@app.route("/api/recommendation/congestion", methods=["GET"])
+@app.route("/api/recommendation/congestion")
 def get_congestion():
     try:
         location_id = request.args.get("location_id", type=int)
@@ -145,6 +142,34 @@ def get_congestion():
             json.dumps({"error": str(e)}, ensure_ascii=False),
             content_type="application/json; charset=utf-8"
         ), 500
+
+#시간대별 혼잡도 - 장소 id, 시간대별로 가능.
+@app.route("/api/congestion/avg")
+def avg_congestion_by_hour():
+    try:
+        loc = request.args.get("location_id", type=int)
+        hr = request.args.get("hour", type=int)
+
+        if loc is None or hr is None:
+            return jsonify({"error": "location_id and hour are required"}), 400
+
+        # v_hourly_avg_28d에서 해당 장소 + 시간대 평균 데이터 조회
+        rows = (supabase.table("v_hourly_avg_28d")
+                .select("location_id,hour,avg_congestion,avg_people")
+                .eq("location_id", loc)
+                .eq("hour", hr)
+                .limit(1)
+                .execute()).data
+
+        if not rows:
+            return jsonify({"message": "No data found"}), 404
+
+        return jsonify(rows[0])
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 
 #-----------------------------test api-------------------------------------#
 
