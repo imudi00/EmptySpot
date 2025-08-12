@@ -113,7 +113,38 @@ def get_place_details(place_id: int):
             content_type="application/json; charset=utf-8"
         )
 
+#혼잡도 기반 추천 API - 혼잡도 낮은 순으로 장소 추천
+@app.route("/api/recommendation/congestion", methods=["GET"])
+def get_congestion():
+    try:
+        location_id = request.args.get("location_id", type=int)
+        limit = request.args.get("limit", default=20, type=int)  # 상위 N개만 보고 싶을 때
 
+        query = supabase.table("v_location_congestion").select(
+            "location_id,name,building,capacity,"
+            "current_people,congestion"
+        )
+
+        if location_id:
+            query = query.eq("location_id", location_id)
+
+        # 혼잡도 낮은 순으로 추천 (NULL은 맨 뒤로)
+        data = (query
+                .order("congestion", desc=False, nullsfirst=False)
+                .limit(limit)
+                .execute()
+               ).data
+
+        return Response(
+            json.dumps({"items": data}, ensure_ascii=False),
+            content_type="application/json; charset=utf-8"
+        )
+
+    except Exception as e:
+        return Response(
+            json.dumps({"error": str(e)}, ensure_ascii=False),
+            content_type="application/json; charset=utf-8"
+        ), 500
 
 #-----------------------------test api-------------------------------------#
 
