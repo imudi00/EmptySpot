@@ -169,8 +169,46 @@ def avg_congestion_by_hour():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+#인원수별 혼잡도 GET
+@app.route("/api/congestion_people")
+def get_congestion_people():
+    try:
+        group = request.args.get("group", type=int)
+        limit = request.args.get("limit", default=50, type=int)
 
+        if group is None or group <= 0:
+            return Response(
+                json.dumps({"error": "group must be a positive integer"}, ensure_ascii=False),
+                status=400,
+                content_type="application/json; charset=utf-8"
+            )
 
+        limit = max(1, min(limit, 200))  # 과도한 요청 방지
+
+        cols = ("location_id,name,building,campus,capacity,max_group,"
+                "current_people,congestion")
+
+        data = (supabase.table("v_location_congestion")
+                .select(cols)
+                .gte("max_group", group)                     # ✅ group 이상 수용 가능한 장소만
+                .order("congestion", desc=False, nullsfirst=False)  # ✅ 혼잡도 낮은 순, NULL은 뒤로
+                .limit(limit)
+                .execute()
+               ).data
+
+        return Response(
+            json.dumps({"group": group, "count": len(data), "items": data}, ensure_ascii=False),
+            content_type="application/json; charset=utf-8"
+        )
+
+    except Exception as e:
+        return Response(
+            json.dumps({"error": str(e)}, ensure_ascii=False),
+            status=500,
+            content_type="application/json; charset=utf-8"
+        )
+        
+        
 #-----------------------------test api-------------------------------------#
 
 # supabase 연결 테스트용 API (임시적으로 사용)  
