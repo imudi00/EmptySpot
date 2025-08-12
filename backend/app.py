@@ -28,8 +28,6 @@ def haversine(lat1, lon1, lat2, lon2):
     c = 2 * asin(sqrt(a))
     return R * c
 
-# 혼잡도 계산 함수 - 혼잡도 기반 추천api
-
 # 위치 기반 추천 API - 테스트 완료. 잘 돌아감
 @app.route("/api/recommendation/location")
 def recommend_location():
@@ -60,32 +58,64 @@ def recommend_location():
             content_type="application/json; charset=utf-8"
         ), 500
         
-# 유형 기반 공간 필터링 API
-@app.route("/api/recommendation/type")
-def recommend_by_type():
-    try:
-        # 쿼리 파라미터로 type 받아오기
-        type_value = request.args.get("type")
-        if not type_value:
-            return Response(
-                json.dumps({"error": "type parameter is required"}, ensure_ascii=False),
-                content_type="application/json; charset=utf-8"
-            ), 400
+# 혼잡도 계산 함수 - 혼잡도 기반 추천api
 
-        # Supabase에서 해당 type에 맞는 장소 가져오기
-        response = supabase.table("location").select("id, name, lat, lng, type").eq("type", type_value).execute()
-        results = response.data
+# 장소 상세 정보 불러오기 - 버튼의 장소 id와 연결.
+@app.route("/api/places/<int:place_id>", methods=["GET"])
+def get_place_details(place_id: int):
+    try:
+        # location.id == place_id 인 행에서 필요한 필드 모두 조회
+        res = (
+            supabase
+            .table("location")
+            .select("id, name, building, max_group, details")
+            .eq("id", place_id)
+            .limit(1)
+            .execute()
+        )
+
+        if not res.data:
+            payload = {"error": f"Place id {place_id} not found"}
+            return Response(
+                json.dumps(payload, ensure_ascii=False),
+                status=404,
+                content_type="application/json; charset=utf-8"
+            )
+
+        row = res.data[0]
+
+        # max_group 정수 변환(없거나 형식이 이상하면 None)
+        try:
+            max_group = int(row["max_group"]) if row.get("max_group") is not None else None
+        except (ValueError, TypeError):
+            max_group = None
+
+        payload = {
+            "place": {
+                "id": row.get("id"),
+                "name": row.get("name", ""),        # 텍스트(한글) OK
+                "building": row.get("building", ""),# 텍스트(한글) OK
+                "max_group": max_group,             # 정수
+                "details": row.get("details", ""),  # 텍스트(한글) OK
+            }
+        }
 
         return Response(
-            json.dumps({"matched_locations": results}, ensure_ascii=False),
+            json.dumps(payload, ensure_ascii=False),
             content_type="application/json; charset=utf-8"
         )
 
     except Exception as e:
+        payload = {"error": str(e)}
         return Response(
-            json.dumps({"error": str(e)}, ensure_ascii=False),
+            json.dumps(payload, ensure_ascii=False),
+            status=500,
             content_type="application/json; charset=utf-8"
-        ), 500
+        )
+
+
+
+#-----------------------------test api-------------------------------------#
 
 # supabase 연결 테스트용 API (임시적으로 사용)  
 @app.route("/test")
@@ -100,6 +130,8 @@ def test():
 @app.route("/")
 def home():
     return "Flask 서버가 잘 작동 중입니다!"
+
+#---------------------------------------------------------------------------#
 
 if __name__ == "__main__":
     app.run(debug=True)
