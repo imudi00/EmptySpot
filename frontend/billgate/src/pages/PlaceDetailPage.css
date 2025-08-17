@@ -1,104 +1,191 @@
 /* src/pages/PlaceDetailPage.css */
 
- .place-detail-container {
-   max-width: 1000px;
-   margin: 2rem auto;
-   padding: 2rem;
-   background-color: #fff;
-   border-radius: 8px;
-   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-   display: flex;
-   flex-direction: column;
-   gap: 2rem;
- }
+.place-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
- .place-image {
-   width: 100%;
-   border-radius: 6px;
-   overflow: hidden;
-   margin-bottom: 1rem;
- }
+.place-image {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
- .place-image img {
-   display: block;
-   width: 100%;
-   height: auto;
-   object-fit: cover;
- }
+.place-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 
- .place-info {
-   padding: 1rem 0;
- }
+.place-info-card,
+.congestion-graph-card {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
- .place-name {
-   font-size: 2rem;
-   font-weight: bold;
-   color: #333;
-   margin-bottom: 0.5rem;
- }
+.place-name {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
 
- .place-location,
- .place-description,
- .place-rating {
-   font-size: 1rem;
-   color: #666;
-   line-height: 1.6;
-   margin-bottom: 0.8rem;
- }
+.place-location,
+.place-distance {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
 
- .place-rating {
-   font-weight: bold;
-   color: #007bff;
- }
+.place-description {
+    font-size: 1em;
+    color: #444;
+    line-height: 1.6;
+    margin-top: 15px;
+}
 
- .congestion-graph {
-   padding: 1rem 0;
-   border-top: 1px solid #eee;
- }
+.congestion-graph-card h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
- .congestion-graph h2 {
-   font-size: 1.5rem;
-   color: #333;
-   margin-bottom: 1rem;
-   text-align: center;
- }
+.graph-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 200px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+}
 
- .graph-container {
-   display: flex;
-    justify-content: space-around;/*아래부터*/
-   align-items: flex-end;
-   gap: 0.5rem;
-   width: 100%;
-   height: 150px;
-   border-bottom: 1px solid #ccc;
-   padding-bottom: 0.5rem;
- }
+.graph-bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 10%;
+    text-align: center;
+}
 
- .graph-bar {
-   flex: 1;
-   text-align: center;
- }
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    border-bottom: 2px solid #ccc;
+    position: relative;
+}
 
- .graph-bar .day {
-   font-size: 0.8rem;
-   color: #777;
-   margin-bottom: 0.3rem;
- }
+.bar {
+    width: 80%;
+    border-radius: 5px 5px 0 0;
+    transition: height 0.5s ease-in-out, background-color 0.5s ease-in-out;
+    margin: 0 auto;
+}
 
- .graph-bar .bar {
-   background-color: #007bff;
-   width: 80%;
-   margin: 0 auto;
-   border-radius: 3px 3px 0 0;
-   position: relative;
- }
+.bar-chart.low .bar { background-color: #4CAF50; }
+.bar-chart.medium .bar { background-color: #FFC107; }
+.bar-chart.high .bar { background-color: #F44336; }
 
- .graph-bar .bar::after {
-   content: attr(data-level) '%';
-   position: absolute;
-   top: -1.5rem;
-   left: 50%;
-   transform: translateX(-50%);
-   font-size: 0.7rem;
-   color: #555;
- }
+.day {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.bar-label {
+    font-size: 0.8em;
+    color: #333;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    .place-detail-container {
+        padding: 10px;
+    }
+
+    .place-info-card,
+    .congestion-graph-card {
+        padding: 15px;
+    }
+
+    .place-name {
+        font-size: 1.8em;
+    }
+
+    .place-location,
+    .place-distance {
+        font-size: 1em;
+    }
+
+    .congestion-graph-card h2 {
+        font-size: 1.3em;
+    }
+
+    .graph-bar-item {
+        width: 12%;
+    }
+
+    .day {
+        font-size: 0.8em;
+    }
+}
+
+/* src/pages/PlaceDetailPage.css */
+
+/* ... 기존 CSS 코드들 ... */
+
+.refresh-button {
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.refresh-button:hover {
+    background-color: #357bd8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.refresh-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 추가 스타일: 이모지를 포함한 버튼 텍스트의 정렬을 위해 */
+.refresh-button span {
+  display: flex;
+  align-items: center;
+}

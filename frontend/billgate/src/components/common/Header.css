@@ -52,3 +52,8 @@
 .icon-link:hover {
   color: #007bff;
 }
+.header-logo-link {
+    
+    text-decoration: none;
+    color: inherit; /* 부모 요소의 글자 색상을 상속받습니다. */
+}

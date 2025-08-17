@@ -1,121 +1,156 @@
 /* src/pages/RecommendationsPage.css */
 
 .recommendations-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 3rem 1rem;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-}
-
-.recommendations-header {
-  margin-bottom: 2.5rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.recommendations-header .school-logo {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  margin-bottom: 0.5rem;
-}
-
-.recommendations-header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.25rem;
-  color: #2c3e50;
-  font-weight: 700;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
 }
 
 .personnel-info {
-  font-size: 1.1rem;
-  color: #555;
-  margin-top: 1.5rem;
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 1.5rem;
 }
 
 .recommendations-list {
-  background-color: #ffffff;
-  border: 1px solid #f0f0f0;
-  border-radius: 12px;
-  padding: 2.5rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  text-align: left;
+   background-color: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    padding-top: 1rem;
+}
+
+/* 🚀 새로운 스크롤 컨테이너 스타일 */
+.recommendations-scroll-container {
+    max-height: 300px; /* 원하는 최대 높이로 설정 */
+    overflow-y: auto; /* 세로 스크롤 가능하게 설정 */
+    padding-right: 15px; /* 스크롤바와 콘텐츠 사이 간격 */
+    padding-top: 1rem; /* 제목과의 간격 */
+}
+
+/* 🚀 스크롤바 디자인 (선택 사항) */
+.recommendations-scroll-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.recommendations-scroll-container::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.recommendations-scroll-container::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
 }
 
 .recommendations-list h2 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #2c3e50;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #4a90e2;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    text-align: center; 
 }
 
+
 .recommendation-item {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .recommendation-item:last-child {
-  border-bottom: none;
+    border-bottom: none;
 }
-
 
 .recommendation-link {
-  text-decoration: none; /* 링크 밑줄 제거 */
-  color: inherit; /* 부모 요소의 색상 상속 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+    flex-grow: 1;
 }
-
-.recommendation-link:hover .item-name {
-  text-decoration: underline; /* 호버 시 이름에 밑줄 표시 (선택 사항) */
-}
-
 
 .rank-number {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #4a90e2;
-  width: 30px;
-  text-align: center;
-  flex-shrink: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4a90e2;
+    width: 30px;
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .item-details {
-  flex-grow: 1;
+    flex-grow: 1;
+}
+
+.item-details-left {
+    flex-grow: 1;
+}
+
+.item-details-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .item-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
 }
 
-.item-description {
-  font-size: 0.9rem;
-  color: #7f8c8d;
-  margin-top: 0.2rem;
+.item-location {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-top: 0.2rem;
 }
 
-.chart-bar-wrapper {
-  background-color: #e9ecef;
-  border-radius: 5px;
-  height: 8px;
-  margin-top: 0.8rem;
+.congestion-squares-container {
+    display: flex;
+    gap: 2px;
+    height: 10px;
 }
 
-.chart-bar {
-  background-color: #27ae60;
-  height: 100%;
-  border-radius: 5px;
-  transition: width 0.5s ease;
+.square {
+    width: 10px;
+    height: 100%;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.square.filled.low {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+}
+
+.square.filled.medium {
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+}
+
+.square.filled.high {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.congestion-percent {
+    font-size: 0.9rem;
+    color: #555;
 }
 
 .hardcoded-label {
-  font-size: 0.8rem;
-  color: #95a5a6;
-  text-align: center;
-  margin-bottom: 1.5rem;
+    font-size: 0.8rem;
+    color: #95a5a6;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }

@@ -1,58 +1,59 @@
 /* src/pages/SchoolSelectPage.css */
 
 .school-select-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
 }
 
 .school-select-container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
 .school-select-container p {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 3rem;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
 }
 
 .school-list {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+    display: flex; /* 가로 정렬을 위한 핵심 속성 */
+    justify-content: center; /* 아이템들을 가로 중앙에 배치 */
+    gap: 2rem; /* 아이템 사이의 간격을 2rem으로 설정 */
+    flex-wrap: wrap; /* 창 크기가 작아지면 자동으로 줄 바꿈 */
+}
+
+.school-item-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .school-item {
-  width: 200px;
-  padding: 1.5rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+    width: 200px;
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .school-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
 }
 
 .school-item img {
-  max-width: 100px;
-  height: auto;
-  margin-bottom: 1rem;
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 1rem;
 }
 
 .school-item p {
-  font-weight: bold;
-  font-size: 1rem;
-  color: #333;
-  margin: 0;
-}
-.school-item-link {
-  text-decoration: none; /* 링크의 밑줄 제거 */
-  color: inherit; /* 부모 요소의 글자색 상속 */
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+    margin: 0;
 }
