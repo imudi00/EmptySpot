@@ -54,13 +54,15 @@
 }
 
 .cta-button {
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
+  text-decoration: none; /* 이 속성이 밑줄을 없애줍니다. */
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block; /* 링크 버튼의 패딩과 마진을 올바르게 적용하기 위함 */
 }
+
 
 .primary-button {
   background-color: #007bff;
