@@ -163,14 +163,7 @@ function PlaceDetailPage() {
         <div className="congestion-graph-card">
           <h2>시간대별 혼잡도</h2>
           <div className="graph-wrapper">
-            <div className="y-axis-container">
-              <div className="y-axis-label">0%</div>
-              <div className="y-axis-label">20%</div>
-              <div className="y-axis-label">40%</div>
-              <div className="y-axis-label">60%</div>
-              <div className="y-axis-label">80%</div>
-              <div className="y-axis-label">100%</div>
-            </div>
+            
             <div className="graph-container">
               {hasNoValidData ? (
                 <p>아직 준비되지 않았습니다. 🥺</p>

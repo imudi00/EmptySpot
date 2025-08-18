@@ -13,8 +13,8 @@ function StartPage() {
         <section className="startpage-content-wrapper">
           <div className="startpage-text-section">
             <h1 className="startpage-title">
-              <span className="title-highlight animated-text">공간시간 장소?</span><br/>
-              이젠 한눈에 보세요!(서비스 메인 기능)
+              {/* 줄바꿈을 방지하기 위해 <br/> 태그를 제거했습니다 */}
+              <span className="title-highlight animated-text">우리를 위한 최선의 장소찾기</span><br/> 더이상 장소찾아 헤메지 마세요!
             </h1>
             <h2 className="startpage-service-name animated-service-name">
   {"장소 빌게이츠".split("").map((char, index) => (
@@ -24,14 +24,13 @@ function StartPage() {
   ))}
 </h2>
             <p className="startpage-subtitle">
-              학교 내 빈 공간 정보를  실시간으로.어플에대한 추가설명 ...
-            </p>
+              실시간 혼잡도 확인부터 인원수 맞춤 공간 추천까지, 학교 장소를 모두 확인하세요.</p>
             <div className="startpage-cta-buttons">
                 <Link to="/select-school" className="cta-button primary-button">
                 내 학교 선택하기 →
                 </Link>
               <button className="cta-button secondary-button">
-                내 학교 바로가기 →
+                서비스 소개 →
               </button>
             </div>
           </div>
