@@ -248,7 +248,7 @@ function SchoolMainPage() {
                                 <p>장소 목록을 불러올 수 없습니다.</p>
                             )}
                         </div>
-                        <p className="hardcoded-label">※ 이 부분은 이제 백엔드에서 데이터를 가져옵니다.</p>
+                        
                     </div>
                 </div>
             </main>
