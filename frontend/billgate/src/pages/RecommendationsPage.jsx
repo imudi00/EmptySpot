@@ -110,7 +110,7 @@ function RecommendationsPage() {
             <Header />
             <main className="recommendations-container">
                 <div className="recommendations-list">
-                    <h2>✨ {schoolData.name}에 맞는 장소 추천 순</h2>
+                    <h2>현재 {personnel}명이 이용가능 공간 </h2>
                     <div className="recommendations-scroll-container">
                         {recommendations.map((item, index) => (
                             <div key={item.location_id || index} className="recommendation-item">

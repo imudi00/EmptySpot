@@ -172,7 +172,7 @@ function SchoolMainPage() {
                 <div className="school-info">
                     <img src={schoolData.logo} alt={`${schoolData.name} 로고`} className="school-logo" />
                     <h1>{schoolData.name}</h1>
-                    <p>환영합니다! {schoolData.name}의 빈 강의실 찾기 서비스입니다.</p>
+                    <p>환영합니다! {schoolData.name}의 실시간 장소 찾기 서비스입니다.</p>
                 </div>
                 
                 <div className="features-wrapper">
@@ -201,7 +201,7 @@ function SchoolMainPage() {
 
                     <div className="feature-card reserve-room">
                         <div className="chart-header">
-                            <h2>회의실 예약</h2>
+                            <h2>실시간</h2>
                             
                             <CustomDropdown
                                 options={[
@@ -248,7 +248,7 @@ function SchoolMainPage() {
                                 <p>장소 목록을 불러올 수 없습니다.</p>
                             )}
                         </div>
-                        <p className="hardcoded-label">※ 이 부분은 이제 백엔드에서 데이터를 가져옵니다.</p>
+                        
                     </div>
                 </div>
             </main>
