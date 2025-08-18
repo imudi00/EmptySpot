@@ -15,10 +15,7 @@ function Header() {
             <span className="logo-text">timebillgate</span>
           </div>
         </Link>
-        <nav className="header-nav">
-          <a href="#" className="nav-item">로그인</a>
-          <a href="#" className="nav-item">회원가입</a>
-        </nav>
+        
       </div>
       <div className="header-right-icons">
         <a href="javascript:void(0)" className="icon-link"><FaQuestionCircle /></a>
