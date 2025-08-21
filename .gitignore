@@ -3,3 +3,11 @@ backend/spotenv/
 
 # 환경변수 파일 (모든 위치에서)
 **/.env
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment (가상 환경)
+venv/
+env/
+.venv/

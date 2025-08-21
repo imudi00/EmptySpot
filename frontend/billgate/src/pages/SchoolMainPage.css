@@ -1,0 +1,394 @@
+/* src/pages/SchoolMainPage.css - Final Version */
+
+/* ----- 기본 레이아웃 및 폰트 스타일 ----- */
+.school-main-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+
+}
+
+/* SchoolMainPage.css 파일 */
+
+.user-location-display {
+    font-size: 0.8em; /* 글자 크기를 더 작게 */
+    color: #888; /* 약간 더 연한 회색으로 변경 */
+    margin-top: 5px; /* 위쪽 여백 조정 */
+    text-align: right; /* 오른쪽에 정렬하여 드롭다운과 균형 맞추기 */
+    font-weight: 500;
+}
+/* ----- 헤더 및 학교 정보 섹션 ----- */
+.school-info {
+
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1.2px solid #e0e0e0;
+}
+
+.school-info .school-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.school-info h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.1rem;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.school-info p {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    margin: 0;
+
+}
+
+/* ----- 기능 카드 섹션 (전체 컨테이너) ----- */
+.features-wrapper {
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    flex: 1;
+    max-width: 380px;
+    background-color: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ----- '빈 강의실 찾기' 카드 ----- */
+.find-classroom {
+  background: linear-gradient(135deg, #4a90e2, #50e3c2);
+  color: white;
+}
+
+.find-classroom h2 {
+
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+
+}
+.input-container {
+  margin-bottom: 1.5rem;
+}
+
+.personnel-input {
+
+    width: 120px;
+    padding: 0.6rem 0.8rem;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    text-align: center;
+    outline: none; /* 포커스 시 기본 외곽선 제거 */
+}
+
+/* 💡 포커스(클릭/탭)되었을 때만 스타일 적용 */
+.personnel-input:focus {
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+
+}
+
+.search-button {
+  background-color: white;
+  color: #4a90e2;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #e6e6e6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ----- '회의실 예약' 카드 ----- */
+.reserve-room h2 {
+
+    color: #2c3e50;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+.chart-header h2 {
+    white-space: nowrap; /* 줄바꿈 방지 */
+    /* 필요한 경우 추가 스타일 */
+    margin: 0;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+/* SchoolMainPage.css */
+
+
+/* 선택된 버튼(active) 색상 변경 */
+
+.dropdown-item.active {
+  background-color: #007bff !important; /* 원하는 배경색 */
+  color: #fff;              /* 글자색 */
+}
+
+
+
+
+.sort-dropdown {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #f0f4f7;
+    color: #4a90e2;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+
+
+.sort-dropdown:focus {
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.4);
+}
+
+.current-location-button {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #50e3c2;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.current-location-button:hover {
+    background-color: #43c4a8;
+    transform: translateY(-1px);
+}
+
+.realtime-chart-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.chart-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.8rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.chart-item:hover {
+    box-shadow: 0 4-px 12px rgba(0, 0, 0, 0.1);
+
+}
+
+.rank-number {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2c3e50;
+  width: 20px;
+  text-align: center;
+}
+
+.item-details {
+
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-details-left {
+    text-align: left;
+}
+
+.item-details-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.item-name {
+    font-size: 0.9rem;
+    line-height: 1.3;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 0.2rem;
+}
+
+.item-location {
+    font-size: 0.75rem;
+    color: #7f8c8d;
+    margin: 0;
+
+}
+
+.hardcoded-label {
+  margin-top: 1.5rem;
+  font-size: 0.7rem;
+  color: #95a5a6;
+}
+
+
+/* ----- 네모칸 시각화 스타일 ----- */
+.congestion-squares-container {
+    display: flex;
+    gap: 2px;
+    margin-top: 5px;
+    height: 10px;
+}
+
+.square {
+    width: 10px;
+    height: 100%;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.square.filled.low {
+    background-color: #2ecc71;
+}
+
+.square.filled.medium {
+    background-color: #f1c40f;
+}
+
+.square.filled.high {
+    background-color: #e74c3c;
+}
+
+/* ----- 반응형 디자인 수정 (필요에 따라) ----- */
+
+@media (max-width: 992px) {
+  .features-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+
+    .feature-card {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+/* ----- 인원수 입력 버튼 스타일 ----- */
+.custom-number-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* 버튼과 input 사이 간격 */
+}
+
+.decrease-button,
+.increase-button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%; /* 동그랗게 */
+    background-color: white;
+    color: #4a90e2;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+}
+
+.decrease-button:hover,
+.increase-button:hover {
+    background-color: #f0f4f7;
+    transform: translateY(-2px);
+}
+
+
+/*에러메시지*/
+.custom-number-input {
+  position: relative;
+}
+
+.error-message.floating {
+    position: absolute;
+    top: 120%;   
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+
+
+    color: #d9534f;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    animation: fadeIn 0.3s ease;
+}
+
+.error-message.floating::before {
+  content: "⚠️";
+  font-size: 1rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -5px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+

@@ -1,0 +1,87 @@
+.custom-dropdown-container {
+    position: relative;
+    /* 폭을 부모 요소에 맞게 조정하거나 고정값 지정 */
+    width: 150px; 
+}
+
+/* 드롭다운 버튼 (현재 선택된 항목을 보여주는 부분) */
+.dropdown-selected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* 기존 sort-dropdown 스타일 적용 */
+    padding: 8px 12px;
+    border-radius: 8px; /* 모서리를 둥글게 */
+    border: 1.5px solid #4a90e2; /* 파란색 테두리 */
+    background-color: #ffffff; /* 흰색 배경 */
+    color: #4a90e2; /* 파란색 글자 */
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* 마우스 올렸을 때 (hover) 스타일 */
+.dropdown-selected:hover {
+    background-color: #f0f4f7; /* 연한 회색으로 변경 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 드롭다운 화살표 스타일 */
+.dropdown-selected .arrow {
+    font-size: 10px;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* 드롭다운이 열렸을 때 화살표 방향 변경 */
+.dropdown-selected .arrow.up {
+    transform: rotate(180deg);
+}
+
+
+/* 드롭다운 메뉴 (옵션 목록) */
+.dropdown-options {
+    position: absolute;
+    top: calc(100% + 5px); /* 버튼 아래로 약간 간격 두기 */
+    left: 0;
+    width: 100%;
+    
+    list-style: none; /* 목록 점 제거 */
+    padding: 0;
+    margin: 0;
+    
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+/* 드롭다운 메뉴 항목 */
+.dropdown-item {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+/* 드롭다운 항목 마우스 올렸을 때 (hover) 스타일 */
+.dropdown-item:hover {
+    background-color: #e0f0ff; /* 연한 파란색 배경 */
+}
+
+/* 첫 번째 항목의 위쪽 모서리 둥글게 */
+.dropdown-options li:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* 마지막 항목의 아래쪽 모서리 둥글게 */
+.dropdown-options li:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

@@ -1,0 +1,239 @@
+/* src/pages/PlaceDetailPage.css */
+
+.place-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.place-image {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.place-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.place-info-card,
+.congestion-graph-card {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.place-name {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.place-location,
+.place-distance {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.place-description {
+    font-size: 1em;
+    color: #444;
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+.congestion-graph-card h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 그래프 전체를 감싸는 새로운 컨테이너 */
+.graph-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* 세로축 스타일 */
+.y-axis-container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  height: 200px;
+  padding-right: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.y-axis-label {
+  font-size: 0.8em;
+  color: #666;
+  text-align: right;
+}
+
+/* 기존 graph-container 스타일 수정 */
+.graph-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 200px;
+    padding: 0 10px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+}
+
+/* 각 막대를 포함하는 아이템 컨테이너 */
+.graph-bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 10%;
+    text-align: center;
+    height: 100%;
+    /* 막대와 시간 라벨을 아래에 정렬 */
+    justify-content: flex-end; 
+}
+
+/* 막대와 라벨이 들어가는 차트 영역 */
+.bar-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    border-bottom: 2px solid #ccc;
+    position: relative;
+}
+
+/* 실제 혼잡도를 나타내는 막대 */
+.bar {
+    width: 80%;
+    border-radius: 5px 5px 0 0;
+    transition: height 0.5s ease-in-out, background-color 0.5s ease-in-out;
+    margin: 0 auto;
+    /* 중요: 자식 요소인 bar-label의 위치 기준점이 됩니다. */
+    position: relative;
+}
+
+.bar-chart.low .bar { background-color: #4CAF50; }
+.bar-chart.medium .bar { background-color: #FFC107; }
+.bar-chart.high .bar { background-color: #F44336; }
+
+/* % 라벨 스타일: 마우스를 올렸을 때만 보이도록 */
+.bar-label {
+    font-size: 0.8em;
+    color: #333;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    /* 중요: 막대 내부의 가장 위로 위치를 지정합니다. */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    /* 중요: 라벨 자체의 높이만큼 위로 올려 막대와 겹치지 않게 합니다. */
+    transform: translate(-50%, -100%);
+    white-space: nowrap;
+}
+
+/* 마우스 오버 시 % 라벨 나타나도록 */
+.bar:hover .bar-label {
+    opacity: 1;
+}
+
+/* 가로축 시간 라벨 */
+.day {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px; /* 막대와의 간격 */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    .place-detail-container {
+        padding: 10px;
+    }
+
+    .place-info-card,
+    .congestion-graph-card {
+        padding: 15px;
+    }
+
+    .place-name {
+        font-size: 1.8em;
+    }
+
+    .place-location,
+    .place-distance {
+        font-size: 1em;
+    }
+
+    .congestion-graph-card h2 {
+        font-size: 1.3em;
+    }
+
+    .graph-bar-item {
+        width: 12%;
+    }
+
+    .day {
+        font-size: 0.8em;
+    }
+}
+
+/* 현위치 갱신 버튼 스타일 */
+.refresh-button {
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.refresh-button:hover {
+    background-color: #357bd8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.refresh-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 이모지를 포함한 버튼 텍스트의 정렬을 위해 */
+.refresh-button span {
+  display: flex;
+  align-items: center;
+}
