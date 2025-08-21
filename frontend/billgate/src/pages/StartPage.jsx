@@ -13,7 +13,7 @@ function StartPage() {
                 <section className="startpage-content-wrapper">
                     <div className="startpage-text-section">
                         <h1 className="startpage-title">
-                            <span className="title-highlight animated-text">우리를 위한 최선의 장소찾기</span><br/> 더이상 장소찾아 헤메지 마세요!
+                            <span className="title-highlight animated-text">우리를 위한 최선의 장소찾기</span><br/> 더이상 장소찾아 헤매지 마세요!
                         </h1>
                         <h2 className="startpage-service-name animated-service-name">
                             {"장소 빌게이츠".split("").map((char, index) => (
