@@ -16,7 +16,18 @@ SUPABASE_KEY = os.getenv("SUPABASE_KEY")       # service_role 키나 anon 키
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 app = Flask(__name__)
+# CORS 설정
 CORS(app) # CORS 설정 (모든 도메인 허용)
+
+import base64
+raw = os.getenv("SUPABASE_KEY", "")
+# JWT 구조: header.payload.signature → 가운데(payload)만 디코드
+try:
+    payload = raw.split('.')[1] + '==='  # base64 padding
+    role = json.loads(base64.urlsafe_b64decode(payload))["role"]
+    print(f"[Supabase KEY role] {role}")   # <-- 'service_role' 이어야 정상
+except Exception:
+    print("[Supabase KEY role] (확인 실패)")
 
 # 거리 계산 함수 (Haversine 공식) - 위치 기반 추천api
 def haversine(lat1, lon1, lat2, lon2):

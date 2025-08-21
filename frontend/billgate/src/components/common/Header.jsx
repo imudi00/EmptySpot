@@ -12,13 +12,10 @@ function Header() {
         {/* 로고를 Link 컴포넌트로 감싸서 클릭 시 첫 페이지로 이동하게 합니다. */}
         <Link to="/" className="header-logo-link">
           <div className="header-logo">
-            <span className="logo-text">timebillgate</span>
+            <span className="logo-text">timebillgates</span>
           </div>
         </Link>
-        <nav className="header-nav">
-          <a href="#" className="nav-item">로그인</a>
-          <a href="#" className="nav-item">회원가입</a>
-        </nav>
+        
       </div>
       <div className="header-right-icons">
         <a href="javascript:void(0)" className="icon-link"><FaQuestionCircle /></a>

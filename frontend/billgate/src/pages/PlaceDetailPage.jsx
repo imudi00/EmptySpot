@@ -22,7 +22,6 @@ function PlaceDetailPage() {
   const fetchAllData = useCallback(async (userLat, userLng) => {
     try {
       setLoading(true);
-      // 장소 정보와 혼잡도 데이터를 먼저 불러옵니다.
       const placeResponse = await fetch(`/api/places/${placeId}`);
       if (!placeResponse.ok) {
         throw new Error('장소 정보를 불러오지 못했습니다. (네트워크 오류)');
@@ -35,7 +34,6 @@ function PlaceDetailPage() {
       }
       setPlaceDetails(placeData.place);
 
-      // 시간별 혼잡도 데이터 로드
       const hours = Array.from({ length: 14 }, (_, i) => 9 + i);
       const hourlyData = {};
       for (const hour of hours) {
@@ -43,7 +41,8 @@ function PlaceDetailPage() {
           const response = await fetch(`http://127.0.0.1:5000/api/congestion/avg?location_id=${placeId}&hour=${hour}`);
           if (response.ok) {
             const data = await response.json();
-            hourlyData[hour] = data.congestion;
+            const congestionLevel = data.avg_congestion !== undefined ? data.avg_congestion * 100 : null;
+            hourlyData[hour] = congestionLevel;
           } else {
             hourlyData[hour] = null;
           }
@@ -54,7 +53,6 @@ function PlaceDetailPage() {
       }
       setHourlyCongestion(hourlyData);
 
-      // 사용자의 실제 위치를 기반으로 거리 정보 API 호출
       const recommendationResponse = await fetch(`/api/recommendation/location?lat=${userLat}&lng=${userLng}`);
       if (!recommendationResponse.ok) {
         throw new Error('거리 정보를 불러오지 못했습니다. (네트워크 오류)');
@@ -139,6 +137,7 @@ function PlaceDetailPage() {
   }
   
   const hours = Object.keys(hourlyCongestion).sort((a, b) => a - b);
+  const hasNoValidData = Object.values(hourlyCongestion).every(level => level === null || level === 0);
 
   return (
     <div>
@@ -163,23 +162,29 @@ function PlaceDetailPage() {
 
         <div className="congestion-graph-card">
           <h2>시간대별 혼잡도</h2>
-          <div className="graph-container">
-            {hours.length > 0 ? (
-              hours.map((hour) => {
-                const level = hourlyCongestion[hour];
-                return (
-                  <div key={hour} className="graph-bar-item">
-                    <div className="day">{hour}시</div>
-                    <div className={`bar-chart ${getCongestionColorClass(level)}`}>
-                      <div className="bar" style={{ height: `${level}%` }}></div>
-                    </div>
-                    <div className="bar-label">{level !== null ? `${level}%` : '-'}</div>
-                  </div>
-                );
-              })
-            ) : (
-              <p>시간별 혼잡도 데이터가 없습니다.</p>
-            )}
+          <div className="graph-wrapper">
+            
+            <div className="graph-container">
+              {hasNoValidData ? (
+                <p>아직 준비되지 않았습니다. 🥺</p>
+              ) : (
+                hours.map((hour) => {
+                  const level = hourlyCongestion[hour];
+                  return (
+                    <div key={hour} className="graph-bar-item">
+          
+          <div className={`bar-chart ${getCongestionColorClass(level)}`}>
+            {/* bar-label을 bar div 내부로 이동 */}
+            <div className="bar" style={{ height: `${level}%` }}>
+              <div className="bar-label">{level !== null ? `${Math.round(level)}%` : '-'}</div>
+            </div>
+          </div>
+          <div className="day">{hour}시</div>
+        </div>
+                  );
+                })
+              )}
+            </div>
           </div>
         </div>
       </main>
